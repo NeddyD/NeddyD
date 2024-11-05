@@ -19,14 +19,14 @@ o3_h <- melt(o3_h, id.vars = "date", variable.name = "pollutant", value.name = "
 
 **#best aesthetic scatter plot with regression with my xlsx data in R**
 ggplot(hourly, aes(x = NO2_ground, y = NO2_pandora)) +
-     geom_point(color = "#36454F", size = 3, alpha = 1) +       # Scatter points with custom color and transparency
-     geom_smooth(method = "lm", color = "#FF0000", se = TRUE) +   # Linear regression line with confidence interval
-     theme_bw() +                                            # Minimalist theme for aesthetics
+     geom_point(color = "#36454F", size = 3, alpha = 1) +     
+     geom_smooth(method = "lm", color = "#FF0000", se = TRUE) +  
+     theme_bw() +                                           
      labs(title = "Hourly average concentration of Nitrogen dioxide (NO2)",  
-          x = "NO2 concentration [ug/m3]",
+          x = "NO2 concentration [ug/m3] atn UB3 station",
           y = "NO2 total vertical column amount [mol/m2]") +
-     theme(plot.title = element_text(hjust = 0.5, face = "bold"), # Center and bold the title
-           text = element_text(size = 12))                        # Set text size for readability
+     theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+           text = element_text(size = 12))   
 
 # To show the regression equation in the format y=mh+c R2 value on the scatter plot 
 model <- lm(no2p ~ no2g, data = hourly)
@@ -39,15 +39,16 @@ p_value <- summary(model)$coefficients[2, 4]
 # Create equation and R-squared label
 equation <- paste("y = ", slope, "*x + ", intercept, "\nR² = ", r_squared, sep = "")
 equation <- paste("y = ", slope, "*x + ", intercept, "\nR² = ", r_squared, "\np = ", round(p_value, 3), sep = "")
+
 **last**
 ggplot(hourly, aes(x = no2g, y = no2p)) +
-    geom_point(color = "#36454F", size = 3, alpha = 1) +       # Scatter points with custom color and transparency
-    geom_smooth(method = "lm", color = "#FF0000", se = TRUE) +   # Linear regression line with confidence interval
+    geom_point(color = "#36454F", size = 3, alpha = 1) +   
+    geom_smooth(method = "lm", color = "#FF0000", se = TRUE) +   
     theme_bw() +      
     labs(title = "Hourly average concentration of Nitrogen dioxide (NO2)",  
          x = "NO2 concentration [ug/m3]",
          y = "NO2 total vertical column amount [mol/m2]") +
     theme(plot.title = element_text(hjust = 0.5, face = "bold"), 
-          text = element_text(size = 12)) + xlim(0,300) + ylim(0,0.0008)  + 
+          text = element_text(size = 12)) + xlim(0,300) + ylim(0,0.0008) + 
     annotate("text", x = Inf, y = Inf, label = equation,   
              hjust = 1.1, vjust = 1.5, size = 5, color = "black") 
