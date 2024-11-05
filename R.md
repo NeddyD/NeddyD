@@ -40,7 +40,7 @@ p_value <- summary(model)$coefficients[2, 4]
 equation <- paste("y = ", slope, "*x + ", intercept, "\nR² = ", r_squared, sep = "")
 equation <- paste("y = ", slope, "*x + ", intercept, "\nR² = ", r_squared, "\np = ", round(p_value, 3), sep = "")
 
-**last**
+**#last**
 ggplot(hourly, aes(x = no2g, y = no2p)) +
     geom_point(color = "#36454F", size = 3, alpha = 1) +   
     geom_smooth(method = "lm", color = "#FF0000", se = TRUE) +   
