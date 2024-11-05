@@ -52,3 +52,12 @@ ggplot(hourly, aes(x = no2g, y = no2p)) +
           text = element_text(size = 12)) + xlim(0,300) + ylim(0,0.0008) + 
     annotate("text", x = Inf, y = Inf, label = equation,   
              hjust = 1.1, vjust = 1.5, size = 5, color = "black") 
+
+**#netcdf data era5 single layer data (boundary layer) UB**
+library(ncdf4)    # For reading NetCDF files
+library(raster)   # For raster operations
+library(ggplot2)  # For plotting
+library(dplyr)    # For data manipulation
+library(tidyr)    # For reshaping data
+nc_data <- nc_open("C:/Users/DELL/Documents/ub air quality data/boundary_layer/raw_data/2023_2024.nc")
+print(nc_data)
